@@ -4,8 +4,8 @@
   "description": "spotify connection",
   "main": "credentials.js",
   "scripts": {
-    "start": "tsc && node core/credentials.js",
-    "dev": "nodemon --exec ts-node core/credentials.ts",
+    "start": "tsc && node core/spotifyCredentials.js",
+    "dev": "nodemon --exec ts-node lib/core/spotifyCredentials.ts",
     "test": "npm test"
   },
   "author": "",
