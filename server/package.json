@@ -1,0 +1,26 @@
+{
+  "name": "spotify-test",
+  "version": "1.0.0",
+  "description": "spotify connection",
+  "main": "credentials.js",
+  "scripts": {
+    "start": "tsc && node core/credentials.js",
+    "dev": "nodemon --exec ts-node core/credentials.ts",
+    "test": "npm test"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.18.0"
+  },
+  "devDependencies": {
+    "@babel/plugin-proposal-class-properties": "^7.4.0",
+    "@babel/plugin-proposal-object-rest-spread": "^7.4.0",
+    "@babel/plugin-transform-runtime": "^7.4.0",
+    "@babel/preset-env": "^7.4.2",
+    "@babel/preset-typescript": "^7.3.3",
+    "@babel/runtime": "^7.4.2",
+    "ts-node": "^8.0.3",
+    "typescript": "^3.3.4000"
+  }
+}
