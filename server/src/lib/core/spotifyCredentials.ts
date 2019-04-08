@@ -23,9 +23,12 @@ async function authenticate(): Promise<AxiosPromise> {
     }
 
     const response: AxiosResponse = await axios(options)
-    console.log(response)
     return response.data
   } catch (err) {
     console.log('Error:', err)
   }
+}
+
+export {
+  authenticate
 }
