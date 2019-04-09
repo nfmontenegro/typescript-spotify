@@ -5,3 +5,4 @@ before_script:
   - cd server
 script:
   - npm install
+  - npm test
