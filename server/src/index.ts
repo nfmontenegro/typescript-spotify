@@ -1,12 +1,10 @@
-import express, {Application, Request, Response, Router} from 'express'
+import express, {Application, Request, Response} from 'express'
 
 import {authenticate} from './lib/core/spotifyCredentials'
 
 const app: Application = express()
 
-const router: Router = Router()
-
-router.get(
+app.get(
   '/',
   async (request: Request, response: Response): Promise<Response | any> => {
     const keys = await authenticate()
