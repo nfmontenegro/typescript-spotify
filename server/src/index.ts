@@ -1,16 +1,14 @@
 import express, {Application, Request, Response} from 'express'
 
-import {authenticate} from './lib/core/spotifyCredentials'
+import routes from './routes'
 
 const app: Application = express()
 
-app.get(
-  '/',
-  async (request: Request, response: Response): Promise<Response | any> => {
-    const keys = await authenticate()
-    response.json(keys)
-  }
-)
+app.use('/api', routes)
+
+app.get('/', (request: Request, response: Response) => {
+  response.send('Spotify authenticate')
+})
 
 app.listen(3000, (err: Error) => {
   if (err) throw new Error('Error when running server')
