@@ -1,10 +1,14 @@
+import dotenv from 'dotenv'
+
 import axios, {AxiosRequestConfig, AxiosResponse, AxiosPromise} from 'axios'
+
+dotenv.config()
 
 async function authenticate(): Promise<AxiosPromise> {
   try {
     const URL: any = 'https://accounts.spotify.com/api/token'
-    const CLIENT_ID: any = 'bcf049a8882c4be597b4ff7019c61807'
-    const CLIENT_SECRET: any = 'e6ea4b89ad964ab2b0d7389b14ece51f'
+    const CLIENT_ID: any = process.env.CLIENT_ID
+    const CLIENT_SECRET: any = process.env.CLIENT_SECRET
 
     const options: AxiosRequestConfig = {
       url: URL,
@@ -29,6 +33,4 @@ async function authenticate(): Promise<AxiosPromise> {
   }
 }
 
-export {
-  authenticate
-}
+export {authenticate}

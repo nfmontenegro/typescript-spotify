@@ -12,5 +12,5 @@ app.get('/', (request: Request, response: Response) => {
 
 app.listen(3000, (err: Error) => {
   if (err) throw new Error('Error when running server')
-  console.log('Server running in port: 3000')
+  console.log('Server running in port: http://localhost:3000')
 })

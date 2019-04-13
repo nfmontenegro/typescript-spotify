@@ -1,6 +1,6 @@
 import {Response, Request} from 'express'
 
-import {authenticate} from '../lib/core/spotifyCredentials'
+import {authenticate} from '../lib/micro/spotifyCredentials'
 
 async function auth(request: Request, response: Response) {
   const keys = await authenticate()
