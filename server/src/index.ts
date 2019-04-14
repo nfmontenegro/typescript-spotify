@@ -1,9 +1,11 @@
+import cors from 'cors'
 import express, {Application, Request, Response} from 'express'
 
 import routes from './routes'
 
 const app: Application = express()
 
+app.use(cors())
 app.use('/api', routes)
 
 app.get('/', (request: Request, response: Response) => {

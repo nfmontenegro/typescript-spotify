@@ -1,7 +1,7 @@
 import React from 'react'
 import {withRouter} from 'react-router-dom'
 
-import {Labels} from '../styled'
+import {Label} from '../styled'
 
 function Menu({history}) {
   function renderRouter(router) {
@@ -9,9 +9,9 @@ function Menu({history}) {
   }
   return (
     <>
-      <Labels onClick={() => renderRouter('/albums')}>Albums</Labels>
-      <Labels onClick={() => renderRouter('/artists')}>Artists</Labels>
-      <Labels>Playlists</Labels>
+      <Label onClick={() => renderRouter('/categories')}>Categories</Label>
+      <Label onClick={() => renderRouter('/artists')}>Artists</Label>
+      <Label>Playlists</Label>
     </>
   )
 }
