@@ -2,15 +2,15 @@ import React, {Component} from 'react'
 import {BrowserRouter, Route} from 'react-router-dom'
 
 import Menu from './Menu'
-import Categories from './Categories'
 import Artists from './Artists'
+import Categories from './Categories'
 
 import {Wrapper, Title, MaterialCumbs} from '../styled'
 
 class App extends Component {
   state = {credentials: false}
 
-  handleLogin = async event => {
+  getCredentials = async event => {
     event.preventDefault()
     const response = await fetch('https://microservice-5ipko1n2e.now.sh', {
       method: 'POST',
@@ -33,7 +33,7 @@ class App extends Component {
         <Wrapper>
           <Title>Spotify Hooks</Title>
           {!this.state.credentials && (
-            <button onClick={event => this.handleLogin(event)}>Get Credentials</button>
+            <button onClick={event => this.getCredentials(event)}>Get Credentials</button>
           )}
           <MaterialCumbs>
             <Menu />
