@@ -27,14 +27,22 @@ function App() {
     setCredentials(true)
   }
 
+  function logOut() {
+    localStorage.clear()
+    setCredentials(false)
+  }
+
+  console.log('Credentials!', credentials)
   return (
     <BrowserRouter>
       <Wrapper>
         <Title>Spotify Hooks</Title>
-        {credentials && (
+        {!credentials ? (
           <button onClick={event => getCredentials(event)}>
             Get Credentials
           </button>
+        ) : (
+          <button onClick={() => logOut()}>Logout</button>
         )}
         <MaterialCumbs>
           <Menu />
