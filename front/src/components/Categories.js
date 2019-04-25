@@ -3,10 +3,10 @@ import React, {useState, useEffect} from 'react'
 import {Card, CardImage, Container, Column, Row, SubTitle} from '../styled'
 
 function Categories() {
+  const [stateToken, setToken] = useState('')
   const [categories, setCategories] = useState('')
 
   async function fetchCategories() {
-    const token = localStorage.getItem('token')
     const response = await fetch(
       'https://api.spotify.com/v1/browse/categories',
       {
@@ -21,25 +21,32 @@ function Categories() {
   }
 
   useEffect(() => {
-    fetchCategories()
-  }, [])
+    const token = localStorage.getItem('token')
+    setToken(token)
+    if (token) {
+      fetchCategories()
+    }
+  }, [stateToken])
 
+  const token = localStorage.getItem('token')
   return (
     <>
       <SubTitle>Categories</SubTitle>
       <Container>
         <Row>
-          {categories.items &&
-            categories.items.map(category => {
-              return (
-                <Column key={category.id}>
-                  <Card size="300px">
-                    <SubTitle>{category.name}</SubTitle>
-                    <CardImage image={category.icons[0].url} />
-                  </Card>
-                </Column>
-              )
-            })}
+          {token
+            ? categories.items &&
+              categories.items.map(category => {
+                return (
+                  <Column key={category.id}>
+                    <Card size="300px">
+                      <SubTitle>{category.name}</SubTitle>
+                      <CardImage image={category.icons[0].url} />
+                    </Card>
+                  </Column>
+                )
+              })
+            : 'No token provide'}
         </Row>
       </Container>
     </>
