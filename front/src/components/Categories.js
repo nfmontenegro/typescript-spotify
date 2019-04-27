@@ -7,15 +7,12 @@ function Categories() {
   const [categories, setCategories] = useState('')
 
   async function fetchCategories() {
-    const response = await fetch(
-      'https://api.spotify.com/v1/browse/categories',
-      {
-        method: 'GET',
-        headers: {
-          Authorization: `Bearer ${token}`
-        }
+    const response = await fetch('https://api.spotify.com/v1/browse/categories', {
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${token}`
       }
-    )
+    })
     const {categories} = await response.json()
     setCategories(categories)
   }
@@ -34,19 +31,18 @@ function Categories() {
       <SubTitle>Categories</SubTitle>
       <Container>
         <Row>
-          {token
-            ? categories.items &&
-              categories.items.map(category => {
-                return (
-                  <Column key={category.id}>
-                    <Card size="300px">
-                      <SubTitle>{category.name}</SubTitle>
-                      <CardImage image={category.icons[0].url} />
-                    </Card>
-                  </Column>
-                )
-              })
-            : 'No token provide'}
+          {token &&
+            categories.items &&
+            categories.items.map(category => {
+              return (
+                <Column key={category.id}>
+                  <Card size="300px">
+                    <SubTitle>{category.name}</SubTitle>
+                    <CardImage image={category.icons[0].url} />
+                  </Card>
+                </Column>
+              )
+            })}
         </Row>
       </Container>
     </>

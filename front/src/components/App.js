@@ -1,13 +1,14 @@
 import React, {useState} from 'react'
-import {BrowserRouter, Route} from 'react-router-dom'
+import {Route, withRouter} from 'react-router-dom'
 
-import Menu from './Menu'
 import Artists from './Artists'
 import Categories from './Categories'
 
+import Menu from './Menu'
+
 import {Wrapper, Title, MaterialCumbs} from '../styled'
 
-function App() {
+function App(props) {
   const [credentials, setCredentials] = useState(false)
 
   async function getCredentials(event) {
@@ -30,28 +31,29 @@ function App() {
   function logOut() {
     localStorage.clear()
     setCredentials(false)
+    props.history.push('/')
   }
 
-  console.log('Credentials!', credentials)
   return (
-    <BrowserRouter>
+    <>
       <Wrapper>
         <Title>Spotify Hooks</Title>
         {!credentials ? (
-          <button onClick={event => getCredentials(event)}>
-            Get Credentials
-          </button>
+          <button onClick={event => getCredentials(event)}>Get Credentials</button>
         ) : (
-          <button onClick={() => logOut()}>Logout</button>
+          <>
+            <button onClick={() => logOut()}>Logout</button>
+            <MaterialCumbs>
+              <Menu />
+            </MaterialCumbs>
+          </>
         )}
-        <MaterialCumbs>
-          <Menu />
-        </MaterialCumbs>
       </Wrapper>
+
       <Route path="/categories" component={Categories} />
       <Route path="/artists" component={Artists} />
-    </BrowserRouter>
+    </>
   )
 }
 
-export default App
+export default withRouter(App)
