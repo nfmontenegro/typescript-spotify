@@ -1,10 +1,13 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import {Route, withRouter} from 'react-router-dom'
 
+import Menu from './Menu'
 import Artists from './Artists'
+import Category from './Category'
+import Unauthenticated from './401'
 import Categories from './Categories'
 
-import Menu from './Menu'
+import {AppContext} from './Context'
 
 import {Wrapper, Title, MaterialCumbs} from '../styled'
 
@@ -34,8 +37,15 @@ function App(props) {
     props.history.push('/')
   }
 
+  useEffect(() => {
+    const token = localStorage.getItem('token')
+    if (token) {
+      setCredentials(token)
+    }
+  }, [])
+
   return (
-    <>
+    <AppContext.Provider value={{auth: credentials ? true : false}}>
       <Wrapper>
         <Title>Spotify Hooks</Title>
         {!credentials ? (
@@ -50,9 +60,11 @@ function App(props) {
         )}
       </Wrapper>
 
+      <Route path="/category/:categoryId" component={Category} />
       <Route path="/categories" component={Categories} />
       <Route path="/artists" component={Artists} />
-    </>
+      <Route path="/401" component={Unauthenticated} />
+    </AppContext.Provider>
   )
 }
 

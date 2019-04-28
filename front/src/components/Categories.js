@@ -1,12 +1,15 @@
 import React, {useState, useEffect} from 'react'
+import {withRouter} from 'react-router-dom'
 
 import {Card, CardImage, Container, Column, Row, SubTitle} from '../styled'
 
-function Categories() {
-  const [stateToken, setToken] = useState('')
+import withAuth from '../hoc/withAuth'
+
+function Categories(props) {
+  const [token, setToken] = useState('')
   const [categories, setCategories] = useState('')
 
-  async function fetchCategories() {
+  async function fetchCategories(token) {
     const response = await fetch('https://api.spotify.com/v1/browse/categories', {
       method: 'GET',
       headers: {
@@ -17,15 +20,18 @@ function Categories() {
     setCategories(categories)
   }
 
+  function renderCategory(categoryId) {
+    props.history.push(`/category/${categoryId}`)
+  }
+
   useEffect(() => {
     const token = localStorage.getItem('token')
     setToken(token)
     if (token) {
-      fetchCategories()
+      fetchCategories(token)
     }
-  }, [stateToken])
+  }, [token])
 
-  const token = localStorage.getItem('token')
   return (
     <>
       <SubTitle>Categories</SubTitle>
@@ -36,7 +42,7 @@ function Categories() {
             categories.items.map(category => {
               return (
                 <Column key={category.id}>
-                  <Card size="300px">
+                  <Card size="300px" onClick={() => renderCategory(category.id)}>
                     <SubTitle>{category.name}</SubTitle>
                     <CardImage image={category.icons[0].url} />
                   </Card>
@@ -49,4 +55,4 @@ function Categories() {
   )
 }
 
-export default Categories
+export default withRouter(withAuth(Categories))
