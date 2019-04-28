@@ -1,13 +1,9 @@
 import React from 'react'
 
-export const AppContext = React.createContext()
+export const AppContext = React.createContext({auth: false})
 
 function Context(props) {
-  const state = {
-    auth: false
-  }
-
-  return <AppContext.Provider value={state}>{props.children}</AppContext.Provider>
+  return <AppContext.Provider value={{}}>{props.children}</AppContext.Provider>
 }
 
 export default Context

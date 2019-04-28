@@ -42,7 +42,7 @@ function App(props) {
     if (token) {
       setCredentials(token)
     }
-  }, [])
+  }, [credentials])
 
   return (
     <AppContext.Provider value={{auth: credentials ? true : false}}>

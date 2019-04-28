@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import {withRouter} from 'react-router-dom'
+import {compose} from 'recompose'
 
 import {Card, CardImage, Container, Column, Row, SubTitle} from '../styled'
 
@@ -32,6 +33,7 @@ function Categories(props) {
     }
   }, [token])
 
+  console.log('Props:', props)
   return (
     <>
       <SubTitle>Categories</SubTitle>
@@ -55,4 +57,7 @@ function Categories(props) {
   )
 }
 
-export default withRouter(withAuth(Categories))
+export default compose(
+  withRouter,
+  withAuth
+)(Categories)

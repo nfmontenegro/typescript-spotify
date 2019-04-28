@@ -1,16 +1,13 @@
-import React from 'react'
+import React, {useContext} from 'react'
 import {Redirect} from 'react-router-dom'
 
 import {AppContext} from '../components/Context'
 
 function withAuth(WrappedComponent) {
   return function() {
-    console.log('Hoc component')
-    return (
-      <AppContext.Consumer>
-        {context => (context.auth ? <WrappedComponent /> : <Redirect to="/401" />)}
-      </AppContext.Consumer>
-    )
+    let currentData = useContext(AppContext)
+    console.log('Hoc component', currentData)
+    return currentData.auth ? <WrappedComponent /> : <Redirect to="/401" />
   }
 }
 
