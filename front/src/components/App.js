@@ -39,9 +39,7 @@ function App(props) {
 
   useEffect(() => {
     const token = localStorage.getItem('token')
-    if (token) {
-      setCredentials(token)
-    }
+    return token ? setCredentials(true) : setCredentials(false)
   }, [credentials])
 
   return (
