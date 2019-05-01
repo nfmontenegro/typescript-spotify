@@ -33,7 +33,6 @@ function Categories(props) {
     }
   }, [token])
 
-  console.log('Props:', props)
   return (
     <>
       <SubTitle>Categories</SubTitle>

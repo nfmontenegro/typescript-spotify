@@ -1,7 +1,9 @@
 import React, {useEffect, useState} from 'react'
 
+import {Card, CardImage, Container, Column, Row, SubTitle, Button} from '../styled'
+
 function Category(props) {
-  const [playlist, setPlaylist] = useState({})
+  const [playlists, setPlaylists] = useState([])
 
   useEffect(() => {
     async function fetchCategory(categoryId) {
@@ -15,13 +17,43 @@ function Category(props) {
       })
 
       const json = await response.json()
-      setPlaylist(json)
+      setPlaylists(json.playlists.items)
     }
 
     fetchCategory(props.match.params.categoryId)
   }, [])
 
-  return <h1>{JSON.stringify(playlist)}</h1>
+  function openInNewTab(url) {
+    const windowTab = window.open(url, '_blank')
+    return windowTab.focus
+  }
+
+  return (
+    <>
+      <SubTitle>Category</SubTitle>
+      <Container>
+        <Row>
+          {playlists.length > 0 &&
+            playlists.map(playlist => {
+              console.log(playlist)
+              return (
+                <Column key={playlist.id}>
+                  <Card size="300px">
+                    <SubTitle>{playlist.name}</SubTitle>
+                    <CardImage size="400px" image={playlist.images[0].url} />
+                    <Button onClick={() => openInNewTab(playlist.external_urls.spotify)}>
+                      Open Playlist
+                    </Button>
+                  </Card>
+                </Column>
+              )
+            })}
+        </Row>
+      </Container>
+    </>
+  )
 }
 
-export default Category
+//api.spotify.com/v1/playlists/{playlist_id}
+
+https: export default Category

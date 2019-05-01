@@ -1,15 +1,14 @@
 import React, {useState, useEffect} from 'react'
 import {Route, withRouter} from 'react-router-dom'
 
-import Menu from './Menu'
 import Artists from './Artists'
 import Category from './Category'
-import Unauthenticated from './401'
 import Categories from './Categories'
 
 import {AppContext} from './Context'
+import MenuContainer from '../views/MenuContainer'
 
-import {Wrapper, Title, MaterialCumbs} from '../styled'
+import {Button, Wrapper, Title} from '../styled'
 
 function App(props) {
   const [credentials, setCredentials] = useState(false)
@@ -47,13 +46,11 @@ function App(props) {
       <Wrapper>
         <Title>Spotify Hooks</Title>
         {!credentials ? (
-          <button onClick={event => getCredentials(event)}>Get Credentials</button>
+          <Button onClick={event => getCredentials(event)}>Get Credentials</Button>
         ) : (
           <>
-            <button onClick={() => logOut()}>Logout</button>
-            <MaterialCumbs>
-              <Menu />
-            </MaterialCumbs>
+            <Button onClick={() => logOut()}>Logout</Button>
+            <MenuContainer />
           </>
         )}
       </Wrapper>
@@ -61,7 +58,6 @@ function App(props) {
       <Route path="/category/:categoryId" component={Category} />
       <Route path="/categories" component={Categories} />
       <Route path="/artists" component={Artists} />
-      <Route path="/401" component={Unauthenticated} />
     </AppContext.Provider>
   )
 }

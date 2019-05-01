@@ -9,6 +9,23 @@ export const Title = styled.h1`
   text-align: center;
   color: palevioletred;
 `
+export const Button = styled.button`
+  background: transparent;
+  border-radius: 3px;
+  border: 2px solid palevioletred;
+  color: white;
+  background-color: palevioletred;
+  margin: 0 1em;
+  cursor: pointer;
+  font-size: 14px;
+  padding: 0.8em 1.5em;
+
+  :hover {
+    background-color: white;
+    color: palevioletred;
+    border: 2px solid palevioletred;
+  }
+`
 
 export const SubTitle = styled.h3`
   font-size: 1.8em;
@@ -22,17 +39,18 @@ export const Wrapper = styled.section`
   background: papayawhip;
   margin: 0px auto;
   overflow: hidden;
+  text-align: center;
 `
 
 export const MaterialCumbs = styled.div`
   display: flex;
   padding: 40px;
   width: 50em;
-  margin: 0 auto;
+  margin: 20px auto;
   border-radius: 4px;
   background-color: #ffff;
-  box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.2),
-    0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 3px 1px -2px rgba(0, 0, 0, 0.12);
+  box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14),
+    0px 3px 1px -2px rgba(0, 0, 0, 0.12);
 `
 
 export const Label = styled.div`
@@ -52,13 +70,13 @@ export const Card = styled.div`
   cursor: pointer;
   padding: 30px;
   margin-top: 40px;
-  box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.2),
-    0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 2px 1px -1px rgba(0, 0, 0, 0.12);
+  box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14),
+    0px 2px 1px -1px rgba(0, 0, 0, 0.12);
   border-radius: 4px;
   background-color: #fff;
 `
 export const CardImage = styled.div`
-  height: 140px;
+  height: ${props => props.size || '300px'}
   display: block;
   background-size: cover;
   background-repeat: no-repeat;
