@@ -2,8 +2,9 @@ import React, {useState, useEffect} from 'react'
 import {withRouter} from 'react-router-dom'
 import {compose} from 'recompose'
 
-import {Card, CardImage, Container, Column, Row, SubTitle} from '../styled'
+import {Container, Row, SubTitle} from '../styled'
 
+import FullCard from './FullCard'
 import withAuth from '../hoc/withAuth'
 
 function Categories(props) {
@@ -42,12 +43,13 @@ function Categories(props) {
             categories.items &&
             categories.items.map(category => {
               return (
-                <Column key={category.id}>
-                  <Card size="300px" onClick={() => renderCategory(category.id)}>
-                    <SubTitle>{category.name}</SubTitle>
-                    <CardImage image={category.icons[0].url} />
-                  </Card>
-                </Column>
+                <FullCard
+                  key={category.id}
+                  id={category.id}
+                  name={category.name}
+                  image={category.icons[0].url}
+                  renderItem={renderCategory}
+                />
               )
             })}
         </Row>

@@ -69,11 +69,11 @@ export const Card = styled.div`
   overflow: hidden;
   cursor: pointer;
   padding: 30px;
-  margin-top: 40px;
+  margin: 40px auto auto 20px;
   box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14),
     0px 2px 1px -1px rgba(0, 0, 0, 0.12);
   border-radius: 4px;
-  background-color: #fff;
+  background-color: #ffefd5;
 `
 export const CardImage = styled.div`
   height: ${props => props.size || '300px'}
