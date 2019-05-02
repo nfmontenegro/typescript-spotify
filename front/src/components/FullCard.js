@@ -1,6 +1,6 @@
 import React from 'react'
 
-import {Card, CardImage, Column, SubTitle, Button} from '../styled'
+import {Card, CardImage, Column, SubTitle, Button, ButtonContainer} from '../styled'
 
 function FullCard({id, name, image, tab, renderItem}) {
   function openInNewTab(url) {
@@ -13,7 +13,18 @@ function FullCard({id, name, image, tab, renderItem}) {
       <Card size="300px" onClick={() => renderItem(id)}>
         <SubTitle>{name}</SubTitle>
         <CardImage size="300px" image={image} />
-        {tab && <Button onClick={() => openInNewTab(tab)}>Open Playlist</Button>}
+        {tab && (
+          <ButtonContainer>
+            <Button
+              backgroundColor="#31bb3c"
+              fontSize="16px"
+              color="white"
+              onClick={() => openInNewTab(tab)}
+            >
+              Open Playlist
+            </Button>
+          </ButtonContainer>
+        )}
       </Card>
     </Column>
   )

@@ -12,25 +12,24 @@ export const Title = styled.h1`
 export const Button = styled.button`
   background: transparent;
   border-radius: 3px;
-  border: 2px solid palevioletred;
-  color: white;
-  background-color: palevioletred;
-  margin: 0 1em;
+  color: ${props => props.color || 'white'};
+  background-color: ${props => props.backgroundColor || 'palevioletred'};
   cursor: pointer;
-  font-size: 14px;
+  font-weight: bold;
+  font-size: ${props => props.fontSize || '14px'}
   padding: 0.8em 1.5em;
 
   :hover {
-    background-color: white;
-    color: palevioletred;
-    border: 2px solid palevioletred;
+    opacity: 0.7;
   }
 `
 
 export const SubTitle = styled.h3`
-  font-size: 1.8em;
+  font-size: 2em;
   text-align: center;
-  color: palevioletred;
+  color: ${props => props.color || '#ffefd5'};
+  height: 38px;
+  overflow: hidden;
 `
 
 export const Wrapper = styled.section`
@@ -68,12 +67,12 @@ export const Card = styled.div`
   width: ${props => props.size};
   overflow: hidden;
   cursor: pointer;
-  padding: 30px;
+  height: 500px;
   margin: 40px auto auto 20px;
   box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14),
     0px 2px 1px -1px rgba(0, 0, 0, 0.12);
   border-radius: 4px;
-  background-color: #ffefd5;
+  background-color: black;
 `
 export const CardImage = styled.div`
   height: ${props => props.size || '300px'}
@@ -95,4 +94,9 @@ export const Column = styled.div`
   flex-direction: column;
   flex-basis: 100%;
   flex: 1;
+`
+
+export const ButtonContainer = styled.div`
+  margin: 20px 0;
+  text-align: center;
 `

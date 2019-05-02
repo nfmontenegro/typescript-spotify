@@ -9,6 +9,7 @@ import withAuth from '../hoc/withAuth'
 
 function Categories(props) {
   const [token, setToken] = useState('')
+  const [error, setError] = useState('')
   const [categories, setCategories] = useState('')
 
   async function fetchCategories(token) {
@@ -18,8 +19,8 @@ function Categories(props) {
         Authorization: `Bearer ${token}`
       }
     })
-    const {categories} = await response.json()
-    setCategories(categories)
+    const json = await response.json()
+    return json.error ? setError(json.error.message) : setCategories(json.categories)
   }
 
   function renderCategory(categoryId) {
@@ -34,27 +35,27 @@ function Categories(props) {
     }
   }, [token])
 
+  console.log(categories)
   return (
-    <>
-      <SubTitle>Categories</SubTitle>
-      <Container>
-        <Row>
-          {token &&
-            categories.items &&
-            categories.items.map(category => {
-              return (
-                <FullCard
-                  key={category.id}
-                  id={category.id}
-                  name={category.name}
-                  image={category.icons[0].url}
-                  renderItem={renderCategory}
-                />
-              )
-            })}
-        </Row>
-      </Container>
-    </>
+    <Container>
+      <SubTitle color="palevioletred">Categories</SubTitle>
+      <Row>
+        {error}
+        {token &&
+          categories &&
+          categories.items.map(category => {
+            return (
+              <FullCard
+                key={category.id}
+                id={category.id}
+                name={category.name}
+                image={category.icons[0].url}
+                renderItem={renderCategory}
+              />
+            )
+          })}
+      </Row>
+    </Container>
   )
 }
 

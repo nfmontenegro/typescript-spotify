@@ -6,6 +6,7 @@ import FullCard from './FullCard'
 
 function Category(props) {
   const [playlists, setPlaylists] = useState([])
+  const [error, setError] = useState('')
 
   useEffect(() => {
     async function fetchCategory(categoryId) {
@@ -19,7 +20,7 @@ function Category(props) {
       })
 
       const json = await response.json()
-      setPlaylists(json.playlists.items)
+      return json.error ? setError(json.error.message) : setPlaylists(json.playlists.items)
     }
 
     fetchCategory(props.match.params.categoryId)
@@ -30,26 +31,25 @@ function Category(props) {
   }
 
   return (
-    <>
-      <SubTitle>Category</SubTitle>
-      <Container>
-        <Row>
-          {playlists.length > 0 &&
-            playlists.map(playlist => {
-              return (
-                <FullCard
-                  key={playlist.id}
-                  id={playlist.id}
-                  name={playlist.name}
-                  image={playlist.images[0].url}
-                  tab={playlist.external_urls.spotify}
-                  renderItem={renderItem}
-                />
-              )
-            })}
-        </Row>
-      </Container>
-    </>
+    <Container>
+      <SubTitle color="palevioletred">Category</SubTitle>
+      {error}
+      <Row>
+        {playlists.length > 0 &&
+          playlists.map(playlist => {
+            return (
+              <FullCard
+                key={playlist.id}
+                id={playlist.id}
+                name={playlist.name}
+                image={playlist.images[0].url}
+                tab={playlist.external_urls.spotify}
+                renderItem={renderItem}
+              />
+            )
+          })}
+      </Row>
+    </Container>
   )
 }
 
