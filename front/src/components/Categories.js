@@ -35,7 +35,6 @@ function Categories(props) {
     }
   }, [token])
 
-  console.log(categories)
   return (
     <Container>
       <SubTitle color="palevioletred">Categories</SubTitle>
