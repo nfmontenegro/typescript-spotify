@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react'
 import {Route, withRouter} from 'react-router-dom'
 
 import Artists from './Artists'
+import Playlist from './Playlist'
 import Category from './Category'
 import Categories from './Categories'
 
@@ -55,9 +56,10 @@ function App(props) {
         )}
       </Wrapper>
 
-      <Route path="/category/:categoryId" component={Category} />
-      <Route path="/categories" component={Categories} />
       <Route path="/artists" component={Artists} />
+      <Route path="/categories" component={Categories} />
+      <Route path="/playlist/:playlistId" component={Playlist} />
+      <Route path="/category/:categoryId" component={Category} />
     </AppContext.Provider>
   )
 }

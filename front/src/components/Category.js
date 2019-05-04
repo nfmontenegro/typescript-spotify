@@ -1,8 +1,9 @@
 import React, {useEffect, useState} from 'react'
-
-import {Container, Row, SubTitle} from '../styled'
+import {withRouter} from 'react-router-dom'
 
 import FullCard from './FullCard'
+
+import {Container, Row, SubTitle} from '../styled'
 
 function Category(props) {
   const [playlists, setPlaylists] = useState([])
@@ -27,7 +28,7 @@ function Category(props) {
   }, [])
 
   function renderItem(id) {
-    console.log('Hello!', id)
+    props.history.push(`/playlist/${id}`)
   }
 
   return (
@@ -53,6 +54,4 @@ function Category(props) {
   )
 }
 
-//api.spotify.com/v1/playlists/{playlist_id}
-
-export default Category
+export default withRouter(Category)
