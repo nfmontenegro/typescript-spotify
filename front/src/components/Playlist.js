@@ -17,10 +17,22 @@ function Playlist(props) {
 
       const json = await response.json()
       const playlistData = {
+        name: json.name,
         description: json.description,
+        primaryColor: json.primary_color,
+        followers: json.followers.total,
+        image: json.images[0].url,
         tracks: json.tracks.items
           .filter(item => item.track.preview_url)
-          .map(item => item.track.preview_url)
+          .map(item => {
+            return {
+              name: item.track.name,
+              artist: item.track.artists[0].name,
+              album: item.track.album.name,
+              albumImage: item.track.album.images[1].url,
+              preview: item.track.preview_url
+            }
+          })
       }
       return setPlaylist(playlistData)
     }
@@ -30,12 +42,23 @@ function Playlist(props) {
 
   return (
     <>
+      <h1>{playlist.name}</h1>
       <h1>{playlist.description}</h1>
-
+      <img src={playlist.image} />
       {playlist &&
         playlist.tracks.length > 0 &&
         playlist.tracks.map(item => {
-          return <audio controls src={item} />
+          return (
+            <>
+              <ul>
+                <li>{item.name}</li>
+                <li>{item.artist}</li>
+                <li>{item.album}</li>
+              </ul>
+              <img src={item.albumImage} />
+              <audio controls src={item.preview} />
+            </>
+          )
         })}
     </>
   )

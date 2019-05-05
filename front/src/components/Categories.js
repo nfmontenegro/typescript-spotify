@@ -4,7 +4,7 @@ import {compose} from 'recompose'
 
 import {Container, Row, SubTitle} from '../styled'
 
-import FullCard from './FullCard'
+import CategoryCard from './CategoryCard'
 import withAuth from '../hoc/withAuth'
 
 function Categories(props) {
@@ -44,7 +44,7 @@ function Categories(props) {
           categories &&
           categories.items.map(category => {
             return (
-              <FullCard
+              <CategoryCard
                 key={category.id}
                 id={category.id}
                 name={category.name}
