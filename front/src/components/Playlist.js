@@ -1,5 +1,7 @@
 import React, {useEffect, useState} from 'react'
 
+import {Card, CardImage, Column, Container, SubTitle} from '../styled'
+
 function Playlist(props) {
   const [playlist, setPlaylist] = useState({tracks: []})
   const id = props.match.params.playlistId
@@ -41,26 +43,28 @@ function Playlist(props) {
   }, [])
 
   return (
-    <>
-      <h1>{playlist.name}</h1>
-      <h1>{playlist.description}</h1>
-      <img src={playlist.image} />
-      {playlist &&
-        playlist.tracks.length > 0 &&
-        playlist.tracks.map(item => {
-          return (
-            <>
-              <ul>
-                <li>{item.name}</li>
-                <li>{item.artist}</li>
-                <li>{item.album}</li>
-              </ul>
-              <img src={item.albumImage} />
-              <audio controls src={item.preview} />
-            </>
-          )
-        })}
-    </>
+    <Container>
+      <Column>
+        <Card>
+          <SubTitle>{playlist.name}</SubTitle>
+          <SubTitle>{playlist.description}</SubTitle>
+          <CardImage size="300px" image={playlist.image} />
+          {playlist &&
+            playlist.tracks.length > 0 &&
+            playlist.tracks.map(item => {
+              return (
+                <>
+                  <SubTitle>{item.name}</SubTitle>
+                  <SubTitle>{item.artist}</SubTitle>
+                  <SubTitle>{item.album}</SubTitle>
+                  <CardImage size="300px" image={item.albumImage} />
+                  <audio controls src={item.preview} />
+                </>
+              )
+            })}
+        </Card>
+      </Column>
+    </Container>
   )
 }
 
