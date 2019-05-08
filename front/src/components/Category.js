@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react'
 import {withRouter} from 'react-router-dom'
 
-import FullCard from './FullCard'
+import CategoryCard from './CategoryCard'
 
 import {Container, Row, SubTitle} from '../styled'
 
@@ -39,7 +39,7 @@ function Category(props) {
         {playlists.length > 0 &&
           playlists.map(playlist => {
             return (
-              <FullCard
+              <CategoryCard
                 key={playlist.id}
                 id={playlist.id}
                 name={playlist.name}

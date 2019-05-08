@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react'
 
-import {Card, CardImage, Column, Container, SubTitle} from '../styled'
+import {Card, CardImage, Column, Container, SubTitle, Row} from '../styled'
 
 function Playlist(props) {
   const [playlist, setPlaylist] = useState({tracks: []})
@@ -18,6 +18,7 @@ function Playlist(props) {
       })
 
       const json = await response.json()
+      console.log('JSON:', json)
       const playlistData = {
         name: json.name,
         description: json.description,
@@ -44,26 +45,22 @@ function Playlist(props) {
 
   return (
     <Container>
-      <Column>
-        <Card>
-          <SubTitle>{playlist.name}</SubTitle>
-          <SubTitle>{playlist.description}</SubTitle>
-          <CardImage size="300px" image={playlist.image} />
-          {playlist &&
-            playlist.tracks.length > 0 &&
-            playlist.tracks.map(item => {
-              return (
-                <>
+      <Row>
+        {playlist &&
+          playlist.tracks.length > 0 &&
+          playlist.tracks.map(item => {
+            return (
+              <Column>
+                <Card size="400px">
                   <SubTitle>{item.name}</SubTitle>
                   <SubTitle>{item.artist}</SubTitle>
-                  <SubTitle>{item.album}</SubTitle>
                   <CardImage size="300px" image={item.albumImage} />
-                  <audio controls src={item.preview} />
-                </>
-              )
-            })}
-        </Card>
-      </Column>
+                </Card>
+                <audio controls src={item.preview} />
+              </Column>
+            )
+          })}
+      </Row>
     </Container>
   )
 }
