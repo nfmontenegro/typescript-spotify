@@ -58,7 +58,7 @@ export const Label = styled.div`
   font-size: 1em;
   margin: 1em;
   cursor: pointer;
-  padding: 0.8em 2em;
+  padding: 0.8em 5em;
   border: 2px solid palevioletred;
   border-radius: 3px;
 `

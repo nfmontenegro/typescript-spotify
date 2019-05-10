@@ -10,8 +10,6 @@ function Menu({history}) {
   return (
     <>
       <Label onClick={() => renderRouter('/categories')}>Categories</Label>
-      <Label onClick={() => renderRouter('/artists')}>Artists</Label>
-      <Label>Playlists</Label>
     </>
   )
 }
