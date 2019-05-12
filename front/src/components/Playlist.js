@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react'
 
-import {Card, CardImage, Column, Container, SubTitle, Row} from '../styled'
+import {Card, CardImage, Column, Container, SubTitle, Title, Row} from '../styled'
 
 function Playlist(props) {
   const [playlist, setPlaylist] = useState({tracks: []})
@@ -51,8 +51,10 @@ function Playlist(props) {
             return (
               <Column>
                 <Card size="400px">
-                  <SubTitle>{item.name}</SubTitle>
-                  <SubTitle>{item.artist}</SubTitle>
+                  <Title size="17px">{item.name}</Title>
+                  <Title size="30px" color="#ffefd5">
+                    {item.artist}
+                  </Title>
                   <CardImage size="300px" image={item.albumImage} />
                 </Card>
                 <audio controls src={item.preview} />

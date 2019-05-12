@@ -5,9 +5,9 @@ export const Container = styled.div`
 `
 
 export const Title = styled.h1`
-  font-size: 2.5em;
+  font-size: ${props => props.size || '2.5em'}
   text-align: center;
-  color: palevioletred;
+  color: ${props => props.color || 'palevioletred'}
 `
 export const Button = styled.button`
   background: transparent;
