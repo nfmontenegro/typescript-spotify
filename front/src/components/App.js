@@ -12,10 +12,12 @@ import MenuContainer from '../views/MenuContainer'
 import {Button, Wrapper, Title} from '../styled'
 
 function App(props) {
+  const [loading, setLoading] = useState(false)
   const [credentials, setCredentials] = useState(false)
 
   async function getCredentials(event) {
     event.preventDefault()
+    setLoading(true)
     const response = await fetch('https://microservice-5ipko1n2e.now.sh', {
       method: 'POST',
       headers: {
@@ -29,6 +31,7 @@ function App(props) {
     const json = await response.json()
     localStorage.setItem('token', json.access_token)
     setCredentials(true)
+    setLoading(false)
   }
 
   function logOut() {
@@ -47,7 +50,9 @@ function App(props) {
       <Wrapper>
         <Title>Spotify Hooks</Title>
         {!credentials ? (
-          <Button onClick={event => getCredentials(event)}>Get Credentials</Button>
+          <Button onClick={event => getCredentials(event)}>
+            {loading ? 'Loading ...' : 'Get Credentials'}
+          </Button>
         ) : (
           <>
             <Button onClick={() => logOut()}>Logout</Button>

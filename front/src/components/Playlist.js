@@ -18,7 +18,6 @@ function Playlist(props) {
       })
 
       const json = await response.json()
-      console.log('JSON:', json)
       const playlistData = {
         name: json.name,
         description: json.description,
